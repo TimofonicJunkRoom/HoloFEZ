@@ -235,6 +235,9 @@ public class FezManager : MonoBehaviour {
         return time < 0f || time > duration ? 0f : 1f;
     }
 
+    public bool AssetExists(string assetName) {
+        return AssetMetadata.Map.ContainsKey(assetName.ToLowerInvariant().Replace('/', '\\'));
+    }
     public Stream StreamFromPack(string assetName) {
 		assetName = assetName.ToLowerInvariant().Replace('/', '\\');
 		AssetMetadata metadata;
@@ -247,7 +250,6 @@ public class FezManager : MonoBehaviour {
 		}
 		return null;
 	}
-	
 	public BinaryReader ReadFromPack(string assetName) {
 		Stream stream = StreamFromPack(assetName);
 		if (stream == null) {
